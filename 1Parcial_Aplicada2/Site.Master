@@ -30,15 +30,16 @@
                         <li class="nav-item active">
                             <a class="nav-link" runat="server" href="Default.aspx">Pagina de Inicio</a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="RegistrosNavbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" runat="server" href="~/Registros/RegistroParcial.aspx">Registro</a>
-                                <a class="dropdown-item" runat="server" href="#"></a>
-                                
+                                <a class="dropdown-item" runat="server" href="/Registros/RegistroParcial.aspx">Registro</a>
+                                <a class="dropdown-item" runat="server" href="#"></a>       
                             </div>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consultas
                             </a>
@@ -47,9 +48,11 @@
                                 <a class="dropdown-item" runat="server" href="#"></a>          
                             </div>
                         </li>
+
                         <li><a runat="server" href="Default">Por Defecto</a></li>
-                    </ul>
-                </div>
+                     </ul>
+                  </div>
+
             </div>
         </nav>
         <div class="container-fluid">
