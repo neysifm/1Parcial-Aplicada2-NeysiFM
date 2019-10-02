@@ -12,7 +12,7 @@ namespace _1Parcial_Aplicada2.Registros
 {
     public partial class RegistroParcial : System.Web.UI.Page
     {
-        readonly string KeyViewState = "Evaluacion";
+        readonly string KeyViewState = "Utils";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
