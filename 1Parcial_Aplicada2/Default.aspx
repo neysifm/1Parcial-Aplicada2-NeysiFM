@@ -5,7 +5,7 @@
     CodeBehind="Default.aspx.cs" 
     Inherits="_1Parcial_Aplicada2.Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
         <h1>PROGRAMACION APLICADA II</h1>

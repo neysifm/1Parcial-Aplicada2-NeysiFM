@@ -21,22 +21,21 @@
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" runat="server" href="~/">Primer Parcial Aplicada II</a>
+                <a class="navbar-brand" runat="server" href="~/Default.aspx">Primer Parcial Aplicada II</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" runat="server" href="Default.aspx">Pagina de Inicio</a>
+                            <a class="nav-link" runat="server" href="/">Pagina de Inicio</a>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="RegistrosNavbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" runat="server" href="/Registros/RegistroParcial.aspx">Registro</a>
-                                <a class="dropdown-item" runat="server" href="#"></a>       
+                                <a class="dropdown-item" runat="server" href="~/Registros/RegistroParcial.aspx">Regis</a>     
                             </div>
                         </li>
 
@@ -44,18 +43,17 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consultas
                             </a>
                             <div class="dropdown-menu" aria-labelledby="ConsultasNavbarDropDown">
-                                <a class="dropdown-item" runat="server" href="#"></a>
-                                <a class="dropdown-item" runat="server" href="#"></a>          
+                                <a class="dropdown-item" runat="server" href="#">Consul</a>          
                             </div>
                         </li>
 
-                        <li><a runat="server" href="Default">Por Defecto</a></li>
+                        <li><a runat="server" href="/Default.aspx">Por Defecto</a></li>
                      </ul>
                   </div>
 
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
