@@ -12,21 +12,26 @@ namespace _1Parcial_Aplicada2.Registros
 {
     public partial class RegistroParcial : System.Web.UI.Page
     {
-        readonly string KeyViewState = "Utils";
+        readonly string KeyViewState = "Estudiante";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ViewState[KeyViewState] = new Utils();
+                ViewState[KeyViewState] = new Estudiante();
             }
         }
 
         private void Limpiar()
         {
-            UtilsID.Text = 0.ToString();
+            EstudianteID.Text = 0.ToString();
+            EstudianteTextBox.Text = string.Empty;
+            ServicioTextBox.Text = string.Empty;
+            CantidadTextBox.Text = string.Empty;
+            PrecioTextBox.Text = string.Empty;
+            ImporteTextBox.Text = string.Empty;
             MostrarMensajes.Visible = false;
             MostrarMensajes.Text = string.Empty;
-            ViewState[KeyViewState] = new Utils();
+            ViewState[KeyViewState] = new Estudiante();
             ActualizarGrid();
         }
 
@@ -39,17 +44,17 @@ namespace _1Parcial_Aplicada2.Registros
                 paso = false;
             return paso;
         }
-        private Utils LlenaClase()
+        private Estudiante LlenaClase()
         {
-            Utils utilidades = new Utils();
+            Estudiante estudiante = new Estudiante();
             DateTime.TryParse(FechaTextBox.Text, out DateTime result);
-            utilidades = (Utils)ViewState[KeyViewState];
-            return utilidades;
+            estudiante = (Estudiante)ViewState[KeyViewState];
+            return estudiante;
         }
-        private void LlenaCampo(Utils utilidades)
+        private void LlenaCampo(Estudiante estudiante)
         {
-            UtilsID.Text = utilidades.UtilsID.ToString();
-            ViewState[KeyViewState] = utilidades;
+            EstudianteID.Text = estudiante.EstudianteID.ToString();
+            ViewState[KeyViewState] = estudiante;
             ActualizarGrid();
         }
 
@@ -62,17 +67,17 @@ namespace _1Parcial_Aplicada2.Registros
             if (!Validar())
                 return;
             bool paso = false;
-            Utils utilidades = LlenaClase();
-            RepositorioParcial repositorio = new RepositorioParcial();
-            if (utilidades.UtilsID == 0)
-                paso = repositorio.Guardar(utilidades);
+            Estudiante estudiante = LlenaClase();
+            RepositorioEstudiante repositorio = new RepositorioEstudiante();
+            if (estudiante.EstudianteID == 0)
+                paso = repositorio.Guardar(estudiante);
             else
             {
                 if (!BaseDeDatos())
                 {
                     return;
                 }
-                paso = repositorio.Modificar(utilidades);
+                paso = repositorio.Modificar(estudiante);
             }
             if (paso)
             {
@@ -91,24 +96,24 @@ namespace _1Parcial_Aplicada2.Registros
 
         private bool BaseDeDatos()
         {
-            RepositorioParcial repositorio = new RepositorioParcial();
-            return repositorio.Buscar(UtilsID.Text.ToInt()) != null; ;
+            RepositorioEstudiante repositorio = new RepositorioEstudiante();
+            return repositorio.Buscar(EstudianteID.Text.ToInt()) != null; ;
         }
 
         protected void BuscarButton_Click(object sender, EventArgs e)
         {
-            RepositorioParcial repositorio = new RepositorioParcial();
-            Utils utilidades = repositorio.Buscar(UtilsID.Text.ToInt());
-            if (utilidades != null)
+            RepositorioEstudiante repositorio = new RepositorioEstudiante();
+            Estudiante estudiantes = repositorio.Buscar(EstudianteID.Text.ToInt());
+            if (estudiantes != null)
             {
                 Limpiar();
-                LlenaCampo(utilidades);
+                LlenaCampo(estudiantes);
             }
         }
         protected void EliminarButton_Click(object sender, EventArgs e)
         {
-            RepositorioParcial repositorio = new RepositorioParcial();
-            int id = UtilsID.Text.ToInt();
+            RepositorioEstudiante repositorio = new RepositorioEstudiante();
+            int id = EstudianteID.Text.ToInt();
             if (!BaseDeDatos())
             {
                 MostrarMensajes.Visible = true;
@@ -130,14 +135,14 @@ namespace _1Parcial_Aplicada2.Registros
         }
         protected void AgregarButton_Click(object sender, EventArgs e)
         {
-            Utils utilidades = ((Utils)ViewState[KeyViewState]);
+            Estudiante utilidades = ((Estudiante)ViewState[KeyViewState]);
             ViewState[KeyViewState] = utilidades;
             ActualizarGrid();
         }
 
         private void ActualizarGrid()
         {
-            Utils utiles = (Utils)ViewState[KeyViewState];
+            Estudiante utiles = (Estudiante)ViewState[KeyViewState];
             DetalleGridView.DataBind();
         }
 

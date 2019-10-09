@@ -28,29 +28,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" runat="server" href="/">Pagina de Inicio</a>
+                            <a class="nav-link" runat="server" href="~/">Pagina de Inicio</a>
                         </li>
-
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="RegistrosNavbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" runat="server" href="~/Registros/RegistroParcial.aspx">Regis</a>     
-                            </div>
-                        </li>
-
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registros
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="/Registros/RegistroParcial.aspx">Estudiante</a>
+							</div>
+						</li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consultas
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consultas
                             </a>
                             <div class="dropdown-menu" aria-labelledby="ConsultasNavbarDropDown">
-                                <a class="dropdown-item" runat="server" href="#">Consul</a>          
+                                <a class="dropdown-item" runat="server" href="#">Consulta</a>          
                             </div>
                         </li>
-
-                        <li><a runat="server" href="/Default.aspx">Por Defecto</a></li>
                      </ul>
-                  </div>
-
+                 </div>
             </div>
         </nav>
         <div class="container body-content">

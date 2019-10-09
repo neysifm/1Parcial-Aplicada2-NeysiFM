@@ -10,7 +10,7 @@ namespace DAL
 {
     public class Contexto : DbContext
     {
-        public DbSet<Utils> Utilidades { get; set; }
+        public DbSet<Estudiante> Estudiantes { get; set; }
 
         public Contexto() : base("Constr")
         {

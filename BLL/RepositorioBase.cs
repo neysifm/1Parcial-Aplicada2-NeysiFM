@@ -79,7 +79,7 @@ namespace BLL
         }
 
         // LISTAR
-        public List<T> GetList(Expression<Func<T, bool>> expression)
+        public virtual List<T> GetList(Expression<Func<T, bool>> expression)
         {
             List<T> lista = new List<T>();
             try

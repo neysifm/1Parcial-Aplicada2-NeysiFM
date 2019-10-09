@@ -4,33 +4,34 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class RepositorioParcial : RepositorioBase<Utils>
+    public class RepositorioEstudiante : RepositorioBase<Estudiante>
     {
         // METODO MODIFICAR
-        public override bool Modificar(Utils entity)
+        public override bool Modificar(Estudiante entity)
         {
             bool paso = false;
-            Utils Anterior = Buscar(entity.UtilsID);
+            Estudiante Anterior = Buscar(entity.EstudianteID);
             Contexto contexto = new Contexto();
             try
             {
                 using (Contexto baseDatos = new Contexto())
                 {
-                    foreach (var item in Anterior.DetalleUtils.ToList())
+                    foreach (var item in Anterior.DetalleEstudiante.ToList())
                     {
-                        if (!entity.DetalleUtils.Exists(x => x.DetalleID == item.DetalleID))
+                        if (!entity.DetalleEstudiante.Exists(x => x.DetalleID == item.DetalleID))
                         {
                             baseDatos.Entry(item).State = EntityState.Deleted;
                         }
                     }
                     baseDatos.SaveChanges();
                 }
-                foreach (var item in entity.DetalleUtils)
+                foreach (var item in entity.DetalleEstudiante)
                 {
                     var estado = EntityState.Unchanged;
                     if (item.DetalleID == 0)
@@ -51,14 +52,17 @@ namespace BLL
             return paso;
         }
 
-        // METODO BUSCAR
-        public override Utils Buscar(int id)
+        // METODO LISTAR
+        public override List<Estudiante> GetList(Expression<Func<Estudiante, bool>> expression)
         {
-            Utils Utilidades = new Utils();
-            Contexto contexto = new Contexto();
+            List<Estudiante> ListaEstudiante = new List<Estudiante>();
+            Contexto db = new Contexto();
             try
             {
-                Utilidades = contexto.Utilidades.Include(x => x.DetalleUtils).Where(x => x.UtilsID == id).FirstOrDefault();
+                foreach (var item in base.GetList(expression))
+                {
+                    ListaEstudiante.Add(Buscar(item.EstudianteID));
+                }
             }
             catch (Exception)
             {
@@ -66,9 +70,16 @@ namespace BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
-            return Utilidades;
+            return ListaEstudiante;
         }
+
+        // METODO BUSCAR
+
+        // METODO GUARDAR
+
+        // METODO ELIMINAR
+
     }
 }

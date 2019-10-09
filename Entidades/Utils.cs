@@ -7,21 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    [Serializable]
-    public class Utils
+    
+    public static class Utils
     {
-        [Key]
-        public int UtilsID { get; set; }
-        public virtual List<DetalleUtils> DetalleUtils { get; set; }
-
-        public Utils(int utilsID)
-        {
-            UtilsID = utilsID;
-        }
-
-        public Utils()
-        {
-            UtilsID = 0;
-        }
+        
     }
 }
