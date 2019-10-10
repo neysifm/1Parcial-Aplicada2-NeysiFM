@@ -54,18 +54,19 @@
              <div class="form-group">
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="CantidadTextBox" CssClass="col-md-2 control-label">Cantidad</asp:Label>
-                <asp:TextBox runat="server" TextMode="Number" ID="CantidadTextBox" CssClass="form-control" placeHolder="Cantidad"></asp:TextBox>
+                <asp:TextBox runat="server" TextMode="Number" ID="CantidadTextBox" OnTextChanged="CantidadTextBox_TextChanged" CssClass="form-control" placeHolder="Cantidad"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="CantidadTextBox" CssClass="text-danger" ErrorMessage="Esta Cantidad no es Valida."/>
                 </div>   
               </div>
             </div>
+
 
             <%--PRECIO--%>
             <div class="col-lg-6">
              <div class="form-group">
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="PrecioTextBox" CssClass="col-md-2 control-label">Precio</asp:Label>
-                <asp:TextBox runat="server" TextMode="Number" ID="PrecioTextBox" CssClass="form-control" placeHolder="Precio"></asp:TextBox>
+                <asp:TextBox runat="server" TextMode="Number" ID="PrecioTextBox" OnTextChanged="PrecioTextBox_TextChanged" CssClass="form-control" placeHolder="Precio"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="PrecioTextBox" CssClass="text-danger" ErrorMessage="Este Precio no es Valido."/>
                 </div>   
               </div>
@@ -76,7 +77,7 @@
              <div class="form-group">
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="ImporteTextBox" CssClass="col-md-2 control-label">Importe</asp:Label>
-                <asp:TextBox runat="server" ID="ImporteTextBox" CssClass="form-control" placeHolder="Importe"></asp:TextBox>
+                <asp:TextBox runat="server" ID="ImporteTextBox" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                 </div>   
               </div>
             </div>
@@ -129,7 +130,7 @@
              <div class="form-group">
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="TotalTextBox" CssClass="col-md-2 control-label">Total</asp:Label>
-                <asp:TextBox runat="server" ID="TotalTextBox" CssClass="form-control" placeHolder="Total"></asp:TextBox>
+                <asp:TextBox runat="server" ID="TotalTextBox" CssClass="form-control" CausesValidation="false" ReadOnly="true"></asp:TextBox>
                 </div>   
               </div>
             </div>

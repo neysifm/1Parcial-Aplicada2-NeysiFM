@@ -21,7 +21,7 @@ namespace _1Parcial_Aplicada2.Registros
                 FechaTextBox.Text = DateTime.Now.ToString();
                 ViewState[KeyViewState] = new Estudiante();
                 Limpiar();
-                int id = Request.QueryString["Estudiante"].ToInt();
+                int id = Request.QueryString["EstudianteID"].ToInt();
                 if (id > 0)
                 {
                     using (RepositorioEstudiante repositorio = new RepositorioEstudiante())
@@ -161,6 +161,24 @@ namespace _1Parcial_Aplicada2.Registros
             decimal Importe = ImporteTextBox.Text.ToDecimal();
             estudiante.AgregarDetalle(0, estudiante.EstudianteID, ServicioTextBox.Text, Cantidad, Precio, Importe);
             ActualizarGrid();
+            CalcularTotal();
+        }
+
+        private Decimal CalcularTotal()
+        {
+            decimal total = 0;
+            Estudiante evaluacion = ((Estudiante)ViewState[KeyViewState]);
+            foreach (var item in evaluacion.DetalleEstudiante.ToList())
+            {
+                total += (item.Precio * item.Cantidad);
+            }
+            TotalTextBox.Text = total.ToString();
+            return total;
+        }
+
+        private void CalcularImporte()
+        {
+            this.ImporteTextBox.Text = (CantidadTextBox.Text.ToInt() * PrecioTextBox.Text.ToDecimal()).ToString();
         }
 
         protected void RemoverDetalleClick_Click(object sender, EventArgs e)
@@ -169,6 +187,7 @@ namespace _1Parcial_Aplicada2.Registros
             GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
             estudiante.RemoverDetalle(row.RowIndex);
             ViewState[KeyViewState] = estudiante;
+            CalcularTotal();
             ActualizarGrid();
         }
 
@@ -177,6 +196,16 @@ namespace _1Parcial_Aplicada2.Registros
             Estudiante estudiante = (Estudiante)ViewState[KeyViewState];
             DetalleGridView.DataSource = estudiante.DetalleEstudiante;
             DetalleGridView.DataBind();
+        }
+
+        protected void CantidadTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CalcularImporte();
+        }
+
+        protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CalcularImporte();
         }
     }
 }
