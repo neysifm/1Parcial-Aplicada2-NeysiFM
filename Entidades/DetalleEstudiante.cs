@@ -15,25 +15,27 @@ namespace Entidades
         public int DetalleID { get; set; }
         public int EstudianteID { get; set; }
         [ForeignKey("EstudianteID")]
+        public virtual Estudiante Estudiantes { get; set; }
+        public string Servicio { get; set; }
         public decimal Cantidad { get; set; }
         public decimal Precio { get; set; }
         public decimal Importe { get; set; }
-        public virtual Estudiante Estudiantes { get; set; }
 
-        public DetalleEstudiante(int detalleID, int estudianteID, decimal cantidad, decimal precio, decimal importe, Estudiante estudiantes)
+        public DetalleEstudiante(int detalleID, int estudianteID, string servicio, decimal cantidad, decimal precio, decimal importe)
         {
             DetalleID = detalleID;
             EstudianteID = estudianteID;
+            Servicio = servicio;
             Cantidad = cantidad;
             Precio = precio;
             Importe = importe;
-            Estudiantes = estudiantes;
         }
 
         public DetalleEstudiante()
         {
             DetalleID = 0;
             EstudianteID = 0;
+            Servicio = string.Empty;
             Cantidad = 0;
             Precio = 0;
             Importe = 0;

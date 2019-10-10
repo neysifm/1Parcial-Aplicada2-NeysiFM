@@ -76,10 +76,23 @@ namespace BLL
         }
 
         // METODO BUSCAR
-
-        // METODO GUARDAR
-
-        // METODO ELIMINAR
-
+        public override Estudiante Buscar(int id)
+        {
+            Estudiante estudiante = new Estudiante();
+            Contexto contexto = new Contexto();
+            try
+            {
+                 estudiante = contexto.Estudiantes.Include(x => x.DetalleEstudiante).Where(x => x.EstudianteID == id).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return estudiante;
+        }
     }
 }

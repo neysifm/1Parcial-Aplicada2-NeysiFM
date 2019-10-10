@@ -13,15 +13,13 @@ namespace Entidades
         [Key]
         public int EstudianteID { get; set; }
         public DateTime Fecha { get; set; }
-        public string Servicio { get; set; }
         public decimal Total { get; set; }
         public virtual List<DetalleEstudiante> DetalleEstudiante { get; set; }
 
-        public Estudiante(int estudianteID, DateTime fecha, string servicio, decimal total, List<DetalleEstudiante> detalleEstudiante)
+        public Estudiante(int estudianteID, DateTime fecha, decimal total, List<DetalleEstudiante> detalleEstudiante)
         {
             EstudianteID = estudianteID;
             Fecha = fecha;
-            Servicio = servicio;
             Total = total;
             DetalleEstudiante = detalleEstudiante;
         }
@@ -30,9 +28,18 @@ namespace Entidades
         {
             EstudianteID = 0;
             Fecha = DateTime.Now;
-            Servicio = String.Empty;
             Total = 0;
             DetalleEstudiante = new List<DetalleEstudiante>();
+        }
+
+        public void AgregarDetalle(int detalleID, int estudianteID, string servicio, decimal cantidad, decimal precio, decimal importe)
+        {
+            DetalleEstudiante.Add(new DetalleEstudiante(detalleID, estudianteID, servicio, cantidad, precio, importe));
+        }
+
+        public void RemoverDetalle(int Eliminar)
+        {
+            this.DetalleEstudiante.RemoveAt(Eliminar);
         }
     }
 }

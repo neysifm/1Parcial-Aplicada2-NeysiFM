@@ -77,27 +77,61 @@
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="ImporteTextBox" CssClass="col-md-2 control-label">Importe</asp:Label>
                 <asp:TextBox runat="server" ID="ImporteTextBox" CssClass="form-control" placeHolder="Importe"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="ImporteTextBox" CssClass="text-danger" ErrorMessage="Este Importe no es Valido."/>
                 </div>   
               </div>
             </div>
 
             <%--BOTON AGREGAR--%>
             <div>
-                <asp:Button ID="AgregarButton" Text="Agregar" runat="server" OnClick="AgregarButton_Click" />
+                <asp:Button ID="AgregarButton" class="btn btn-success btn-lg" Text="Agregar" runat="server" OnClick="AgregarButton_Click" />
             </div>
 
             <%--GRID--%>
-            <div>
-                <div class="row">
-                    <div class="table table-responsive col-md-12">
-                        <asp:GridView ID="DetalleGridView" runat="server"
-                            CssClass="table table-condensed table-bordered table-responsive"
-                            GridLines="None" CellPadding="4" ForeColor="#333333" 
-                            AllowPaging="true" PageSize="5">
-                        </asp:GridView>
-                    </div>
-                </div>
+
+            <asp:ScriptManager ID="ScriptManger" runat="server"></asp:ScriptManager>
+                <asp:UpdatePanel ID="UpdatePanel" runat="server">
+                    <ContentTemplate>
+                        <div class="row">
+                            <div class="table table-responsive col-md-12">
+                                <asp:GridView ID="DetalleGridView"
+                                    runat="server" AutoGenerateColumns="false"
+                                    CssClass="table table-condensed table-hover table-responsive"
+                                    CellPadding="4" ForeColor="#333333" GridLines="None"
+                                    AllowPaging="true" PageSize="5">
+                                    <AlternatingRowStyle BackColor="LightBlue" />
+                                    <Columns>
+                                        <asp:TemplateField ShowHeader="False" HeaderText="Opciones">
+                                            <ItemTemplate>
+                                            <asp:Button ID="RemoverDetalleClick" runat="server" CausesValidation="false" CommandName="Select"
+                                              Text="Remover" CssClass="btn btn-danger btn-sm" OnClick="RemoverDetalleClick_Click" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField HeaderText="DetalleID" DataField="DetalleID" Visible="false" />
+                                        <asp:BoundField HeaderText="EstudianteID" DataField="EvaluacionID" Visible="false" />
+                                        <asp:BoundField HeaderText="Servicio" DataField="Servicio" />
+                                        <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                                        <asp:BoundField HeaderText="Precio" DataField="Precio" />
+                                        <asp:BoundField HeaderText="Importe" DataField="Importe" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                    <RowStyle BackColor="#EFF3FB" />
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="DetalleGridView" />
+                    </Triggers>
+                </asp:UpdatePanel>
+
+            <%--TOTAL--%>
+            <div class="col-lg-6">
+             <div class="form-group">
+                <div class="col-sm-10">
+                <asp:Label runat="server" for="TotalTextBox" CssClass="col-md-2 control-label">Total</asp:Label>
+                <asp:TextBox runat="server" ID="TotalTextBox" CssClass="form-control" placeHolder="Total"></asp:TextBox>
+                </div>   
+              </div>
             </div>
 
             <%--BOTONES--%>

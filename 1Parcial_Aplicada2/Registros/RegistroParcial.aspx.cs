@@ -15,12 +15,30 @@ namespace _1Parcial_Aplicada2.Registros
         readonly string KeyViewState = "Estudiante";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            if (!Page.IsPostBack)
             {
+                FechaTextBox.Text = DateTime.Now.ToString();
                 ViewState[KeyViewState] = new Estudiante();
+                Limpiar();
+                int id = Request.QueryString["Estudiante"].ToInt();
+                if (id > 0)
+                {
+                    using (RepositorioEstudiante repositorio = new RepositorioEstudiante())
+                    {
+                        Estudiante estudiante = repositorio.Buscar(id);
+                        if (estudiante == null)
+                        {
+                            MostrarMensajes.Visible = true;
+                            MostrarMensajes.Text = "Registro No encontrado";
+                            MostrarMensajes.CssClass = "alert-danger";
+                        }
+                        else
+                            LlenaCampo(estudiante);
+                    }
+                }
             }
         }
-
         private void Limpiar()
         {
             EstudianteID.Text = 0.ToString();
@@ -82,13 +100,13 @@ namespace _1Parcial_Aplicada2.Registros
             if (paso)
             {
                 Limpiar();
-                MostrarMensajes.Text = "Guardado";
+                MostrarMensajes.Text = "Guardado Exitosamente!!";
                 MostrarMensajes.CssClass = "alert-success";
                 MostrarMensajes.Visible = true;
             }
             else
             {
-                MostrarMensajes.Text = "No guardo";
+                MostrarMensajes.Text = "No Se Pudo Guardar El Registro";
                 MostrarMensajes.CssClass = "alert-warning";
                 MostrarMensajes.Visible = true;
             }
@@ -117,7 +135,7 @@ namespace _1Parcial_Aplicada2.Registros
             if (!BaseDeDatos())
             {
                 MostrarMensajes.Visible = true;
-                MostrarMensajes.Text = "No encontrado";
+                MostrarMensajes.Text = "Registro No encontrado";
                 MostrarMensajes.CssClass = "alert-danger";
                 return;
             }
@@ -127,7 +145,7 @@ namespace _1Parcial_Aplicada2.Registros
                 {
                     Limpiar();
                     MostrarMensajes.Visible = true;
-                    MostrarMensajes.Text = "Eliminado";
+                    MostrarMensajes.Text = "Eliminado Correctamente!!";
                     MostrarMensajes.CssClass = "alert-danger";
 
                 }
@@ -135,16 +153,30 @@ namespace _1Parcial_Aplicada2.Registros
         }
         protected void AgregarButton_Click(object sender, EventArgs e)
         {
-            Estudiante utilidades = ((Estudiante)ViewState[KeyViewState]);
-            ViewState[KeyViewState] = utilidades;
+            Estudiante estudiante = ((Estudiante)ViewState[KeyViewState]);
+            ViewState[KeyViewState] = estudiante;
+            ServicioTextBox.Text = string.Empty;
+            decimal Cantidad = CantidadTextBox.Text.ToDecimal();
+            decimal Precio = PrecioTextBox.Text.ToDecimal();
+            decimal Importe = ImporteTextBox.Text.ToDecimal();
+            estudiante.AgregarDetalle(0, estudiante.EstudianteID, ServicioTextBox.Text, Cantidad, Precio, Importe);
+            ActualizarGrid();
+        }
+
+        protected void RemoverDetalleClick_Click(object sender, EventArgs e)
+        {
+            Estudiante estudiante = ((Estudiante)ViewState[KeyViewState]);
+            GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
+            estudiante.RemoverDetalle(row.RowIndex);
+            ViewState[KeyViewState] = estudiante;
             ActualizarGrid();
         }
 
         private void ActualizarGrid()
         {
-            Estudiante utiles = (Estudiante)ViewState[KeyViewState];
+            Estudiante estudiante = (Estudiante)ViewState[KeyViewState];
+            DetalleGridView.DataSource = estudiante.DetalleEstudiante;
             DetalleGridView.DataBind();
         }
-
     }
 }
