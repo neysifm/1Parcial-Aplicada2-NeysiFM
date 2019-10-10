@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -11,6 +13,7 @@ namespace _1Parcial_Aplicada2
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            Database.SetInitializer<Contexto>(new DropCreateDatabaseIfModelChanges<Contexto>());
         }
     }
 }
