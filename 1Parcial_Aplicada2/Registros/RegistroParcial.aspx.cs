@@ -18,9 +18,8 @@ namespace _1Parcial_Aplicada2.Registros
 
             if (!Page.IsPostBack)
             {
-                FechaTextBox.Text = DateTime.Now.ToString();
+                FechaTextBox.Text = DateTime.Now.Date.ToString("dd/MM/yy");
                 ViewState[KeyViewState] = new Estudiante();
-                Limpiar();
                 int id = Request.QueryString["EstudianteID"].ToInt();
                 if (id > 0)
                 {
@@ -34,7 +33,11 @@ namespace _1Parcial_Aplicada2.Registros
                             MostrarMensajes.CssClass = "alert-danger";
                         }
                         else
+                        {
+                            this.DetalleGridView.DataSource = ((Estudiante)ViewState[KeyViewState]).DetalleEstudiante;
+                            this.DetalleGridView.DataBind();
                             LlenaCampo(estudiante);
+                        }
                     }
                 }
             }

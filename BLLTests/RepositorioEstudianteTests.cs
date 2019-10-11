@@ -13,11 +13,26 @@ namespace BLL.Tests
     public class RepositorioEstudianteTests
     {
         [TestMethod()]
+        public void GuardarTest()
+        {
+            Estudiante estudiante = new Estudiante
+            {
+                EstudianteID = 1,
+                Fecha = DateTime.Parse(DateTime.Now.Date.ToString("dd/MM/yy")),
+            };
+            bool paso = true;
+            RepositorioEstudiante repositorio = new RepositorioEstudiante();
+            paso = repositorio.Guardar(estudiante);
+ 
+            Assert.IsTrue(paso); ;
+        }
+
+        [TestMethod()]
         public void ModificarTest()
         {
             RepositorioEstudiante repositorio = new RepositorioEstudiante();
-            Estudiante estudiante = repositorio.Buscar(0);
-            estudiante.DetalleEstudiante.Add(new DetalleEstudiante(0, 1, "Tutorias", 5, 250, 100));
+            Estudiante estudiante = repositorio.Buscar(1);
+            estudiante.DetalleEstudiante.Add(new DetalleEstudiante(1, 0, "Otras", 2, 200, 300));
             bool paso = repositorio.Modificar(estudiante);
             repositorio.Dispose();
             Assert.IsTrue(paso);

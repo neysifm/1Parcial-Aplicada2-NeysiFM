@@ -16,14 +16,6 @@ namespace Entidades
         public decimal Total { get; set; }
         public virtual List<DetalleEstudiante> DetalleEstudiante { get; set; }
 
-        public Estudiante(int estudianteID, DateTime fecha, decimal total, List<DetalleEstudiante> detalleEstudiante)
-        {
-            EstudianteID = estudianteID;
-            Fecha = fecha;
-            Total = total;
-            DetalleEstudiante = detalleEstudiante;
-        }
-
         public Estudiante()
         {
             EstudianteID = 0;

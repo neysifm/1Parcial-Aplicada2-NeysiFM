@@ -2,20 +2,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
-        <div class="card text-center bg-light">
-            <div class="card-header"><%:Page.Title %></div>
+        <div class="page-header text-center">
+        <h2>Registro Servicios de Estudiantes</h2>
+        </div>
+<div class="container-fluid">
+<div class="card text-center bg-light">
+<div class="card-header"><%:Page.Title %></div>
 
+        <div class="form-row">
             <%--ID--%>
             <div class="col-lg-6">
-             <div class="form-group">
+             <div class="form-group mx-sm-3 mb-2">
                 <div class="col-sm-10">
                 <label for="EstudianteID" runat="server">ID</label>
                 <asp:TextBox ID="EstudianteID" runat="server" TextMode="Number"  CssClass="form-control" placeHolder="ID"></asp:TextBox>
-                <asp:Button ID="BuscarButton" class="btn btn-info btn-lg" Text="Buscar" OnClick="BuscarButton_Click" runat="server" />
                 </div>
-            </div>
-           </div>
+                </div>
+                <asp:Button ID="BuscarButton" Text="Buscar" OnClick="BuscarButton_Click" class="btn btn-primary mb-2" runat="server" />  
+             </div>
 
             <%--FECHA--%>
             <div class="col-lg-6">
@@ -26,14 +30,15 @@
                 </div>
               </div>
               </div>
+         </div>
 
+         <div class="form-row">
             <%--ESTUDIANTE--%>
             <div class="col-lg-6">
              <div class="form-group">
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="EstudianteTextBox" CssClass="col-md-2 control-label">Estudiante</asp:Label>
                 <asp:TextBox runat="server" ID="EstudianteTextBox" CssClass="form-control" placeHolder="Estudiante"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="EstudianteTextBox" CssClass="text-danger" ErrorMessage="Este Estudiante no es Valido."/>
                 </div>   
               </div>
             </div>
@@ -44,18 +49,18 @@
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="ServicioTextBox" CssClass="col-md-2 control-label">Servicio</asp:Label>
                 <asp:TextBox runat="server" ID="ServicioTextBox" CssClass="form-control" placeHolder="Servicio"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="ServicioTextBox" CssClass="text-danger" ErrorMessage="Este Servicio no es Valido."/>
                 </div>   
               </div>
             </div>
+        </div>
 
+        <div class="form-row">
             <%--CANTIDAD--%>
             <div class="col-lg-6">
              <div class="form-group">
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="CantidadTextBox" CssClass="col-md-2 control-label">Cantidad</asp:Label>
                 <asp:TextBox runat="server" TextMode="Number" ID="CantidadTextBox" OnTextChanged="CantidadTextBox_TextChanged" CssClass="form-control" placeHolder="Cantidad"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="CantidadTextBox" CssClass="text-danger" ErrorMessage="Esta Cantidad no es Valida."/>
                 </div>   
               </div>
             </div>
@@ -67,10 +72,10 @@
                 <div class="col-sm-10">
                 <asp:Label runat="server" for="PrecioTextBox" CssClass="col-md-2 control-label">Precio</asp:Label>
                 <asp:TextBox runat="server" TextMode="Number" ID="PrecioTextBox" OnTextChanged="PrecioTextBox_TextChanged" CssClass="form-control" placeHolder="Precio"></asp:TextBox>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="PrecioTextBox" CssClass="text-danger" ErrorMessage="Este Precio no es Valido."/>
                 </div>   
               </div>
             </div>
+        </div>
 
             <%--IMPORTE--%>
             <div class="col-lg-6">
@@ -128,7 +133,7 @@
             <%--TOTAL--%>
             <div class="col-lg-6">
              <div class="form-group">
-                <div class="col-sm-10">
+                <div class="col-sm-6">
                 <asp:Label runat="server" for="TotalTextBox" CssClass="col-md-2 control-label">Total</asp:Label>
                 <asp:TextBox runat="server" ID="TotalTextBox" CssClass="form-control" CausesValidation="false" ReadOnly="true"></asp:TextBox>
                 </div>   

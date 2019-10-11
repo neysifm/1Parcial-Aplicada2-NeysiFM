@@ -36,7 +36,7 @@ namespace BLL
                     var estado = EntityState.Unchanged;
                     if (item.DetalleID == 0)
                         estado = EntityState.Added;
-                    contexto.Entry(item).State = estado;
+                        contexto.Entry(item).State = estado;
                 }
                 contexto.Entry(entity).State = EntityState.Modified;
                 paso = contexto.SaveChanges() > 0;
